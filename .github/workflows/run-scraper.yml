@@ -1,12 +1,12 @@
-name: Run Scraper
+name: Run Scraper Every Hour
 
 on:
-  workflow_dispatch:  # Manual trigger
   schedule:
-    - cron: '0 * * * *'  # Every hour (UTC)
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
-  run:
+  scrape:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,11 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          python -m playwright install chromium
+          python -m playwright install --with-deps
 
       - name: Run scraper
-        env:
-          FMSS_USERNAME: ${{ secrets.FMSS_USERNAME }}
-          FMSS_PASSWORD: ${{ secrets.FMSS_PASSWORD }}
-          N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
         run: python scraper.py
