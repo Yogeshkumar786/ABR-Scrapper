@@ -5,7 +5,7 @@ from playwright.async_api import async_playwright, TimeoutError as PlaywrightTim
 
 USERNAME = "NRM.101"
 PASSWORD = "Safe@123"
-N8N_WEBHOOK_URL = "https://yogeshkumar0787.app.n8n.cloud/webhook/scraper"
+N8N_WEBHOOK_URL = "https://yogeshkumar0787.app.n8n.cloud/webhook/636e0636-f93b-4983-94d6-754e049cfbc2"
 structured_data = []
 
 async def run_script():
