@@ -1,31 +1,65 @@
+# name: Run Scraper Every 15 Minutes
+
+# on:
+#   schedule:
+#     - cron: '*/15 * * * *'  # every 15 minutes
+#   workflow_dispatch:
+
+# jobs:
+#   scrape:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.10'
+
+#       - name: Install dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install playwright requests
+
+#       - name: Install Playwright Browsers
+#         run: |
+#           python -m playwright install --with-deps
+
+#       - name: Run scraper
+#         run: python scraper.py
 name: Run Scraper Every 15 Minutes
 
 on:
   schedule:
-    - cron: '*/15 * * * *'  # every 15 minutes
-  workflow_dispatch:
+    - cron: '*/15 * * * *'  # Runs every 15 minutes (UTC)
+  workflow_dispatch:       # Allows manual triggering
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: ✅ Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: ⚙️ Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install playwright requests
 
-      - name: Install Playwright Browsers
+      - name: 🧩 Install Playwright Browsers
         run: |
           python -m playwright install --with-deps
 
-      - name: Run scraper
+      - name: 🕒 Print UTC time for debug
+        run: date -u
+
+      - name: 🕷️ Run scraper
         run: python scraper.py
